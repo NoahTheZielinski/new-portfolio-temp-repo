@@ -1,0 +1,289 @@
+:root {
+    --bg-shadow: #000;
+    --bg-normal: #111;
+    --bg-light: #444;
+    --bg-accent: #666;
+
+    --txt-shadow: #555;
+    --txt-normal: #999;
+    --txt-light: #bbb;
+    --txt-accent: #fff;
+
+    --brdr-shadow: #666;
+    --brdr-normal: #888;
+    --brdr-light: #aaa;
+    --brdr-accent: #ccc;
+}
+
+head, body {
+    background-color: var(--bg-normal);
+    color: var(--txt-normal);
+    border-color: var(--brdr-normal);
+
+    padding: 0;
+
+    justify-content: center;
+    align-items: center;
+
+    font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Source Code Pro', Consolas, Monaco, 'Courier New', monospace;
+    font-weight: 900;
+}
+
+header, footer {
+    position: fixed;
+
+    background-color: var(--bg-light);
+    color: var(--txt-light);
+
+    width: 100%;
+    box-sizing: border-box;
+
+    left: 0;
+
+    padding-left: 2rem;
+    padding-right: 2rem;
+
+    transition: transform 0.5s ease;
+}
+
+header {
+    display: flex;
+
+    border-bottom: 0.3rem solid var(--brdr-normal);
+
+    top: 0;
+    transform: translateY(0);
+}
+
+.fade-target {
+    opacity: 0;
+    transition: opacity 0.6s ease;
+}
+
+.fade-target.visible {
+    opacity: 1;
+}
+
+header #greeter {
+    margin-left: 1rem;
+}
+
+header.header-hidden {
+    transform: translateY(-100%);
+}
+
+footer {
+    border-top: 0.3rem solid var(--brdr-normal);
+
+    bottom: 0;
+    transform: translateY(100%);
+}
+
+footer.footer-shown {
+    transform: translateY(0);
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+
+    min-height: 100vh;
+    padding: 10vh 0;
+    box-sizing: border-box;
+
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+#intro-landed, #intro-choose, #safe-travels, #bon-voyage {
+    font-size: 2.5rem;
+}
+
+#intro-landed {
+    margin-top: 25vh;
+}
+
+#intro-landed, #safe-travels {
+    translate: -10rem 0;
+}
+#intro-choose, #bon-voyage {
+    translate: 10rem 0;
+}
+
+
+
+#signpost {
+    width: 50rem;
+}
+
+#signpost rect {
+    height: 60px;
+    transition: height 1s ease;
+}
+
+#signpost rect.grown {
+    height: 180px;
+}
+
+.signpost-sign.sign-hidden {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+#signpost.grown .signpost-sign.sign-hidden {
+    opacity: 1;
+}
+
+/* Card system - generic stacked popup cards, used by the achievement system
+   and anything else that wants a small notification-style card. */
+#card-stack {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+
+    display: flex;
+    flex-direction: column-reverse; /* newest card visually at the bottom of the stack */
+
+    z-index: 1000;
+    pointer-events: none; /* clicks pass through the empty stack area */
+}
+
+.stack-card {
+    --card-bg: var(--bg-shadow);
+    --card-txt: var(--txt-shadow);
+    --card-brdr: var(--brdr-shadow);
+
+    position: absolute;
+    bottom: 0;
+    right: 0;
+
+    width: 16rem;
+    box-sizing: border-box;
+
+    background-color: var(--card-bg);
+    color: var(--card-txt);
+    border: 0.15rem solid var(--card-brdr);
+    border-radius: 0.4rem;
+
+    padding: 0.75rem 1rem;
+
+    box-shadow: 0 0.3rem 0.8rem rgba(0, 0, 0, 0.35);
+
+    opacity: 0;
+    transform: translateY(1rem) scale(0.95);
+    transition: transform 0.35s ease, opacity 0.35s ease, bottom 0.35s ease;
+
+    pointer-events: auto;
+}
+
+.stack-card.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.stack-card.despawning {
+    opacity: 0;
+    transform: translateY(-0.5rem) scale(0.95);
+}
+
+.stack-card-title {
+    font-weight: 900;
+    font-size: 1rem;
+    margin: 0 0 0.25rem 0;
+}
+
+.stack-card-description {
+    font-weight: 400;
+    font-size: 0.85rem;
+    margin: 0;
+    color: var(--card-txt);
+    opacity: 0.75;
+}
+
+#page-content {
+    transition: opacity 0.5s ease;
+}
+
+#page-content.hidden {
+    opacity: 0;
+}
+
+/* Dev console - hidden terminal overlay, opened via the reverse-Konami code.
+   Pinned bottom-left; column-reverse keeps the input row visually anchored
+   at the bottom while printed output grows upward above it. */
+#dev-console {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+
+    width: 28rem;
+    max-width: 100vw;
+    max-height: 60vh;
+    box-sizing: border-box;
+
+    background-color: var(--bg-shadow);
+    color: var(--txt-light);
+    border-top: 0.15rem solid var(--brdr-normal);
+    border-right: 0.15rem solid var(--brdr-normal);
+
+    display: flex;
+    flex-direction: column-reverse;
+
+    padding: 0.75rem 1rem;
+
+    font-family: inherit;
+    font-size: 0.9rem;
+
+    z-index: 3000; /* above #card-stack (1000) and header/footer */
+
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+#dev-console.visible {
+    transform: translateY(0);
+}
+
+#dev-console-output {
+    overflow-y: auto;
+
+    display: flex;
+    flex-direction: column-reverse; /* newest line (first child) renders at the bottom of the output block */
+
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.dev-console-line {
+    margin-top: 0.15rem;
+}
+
+#dev-console-input-row {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0; /* never let the output block squeeze the input row */
+
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 0.1rem solid var(--brdr-shadow);
+}
+
+#dev-console-prompt {
+    color: var(--txt-accent);
+    margin-right: 0.5rem;
+}
+
+#dev-console-input {
+    flex: 1;
+
+    background: none;
+    border: none;
+    outline: none;
+
+    color: var(--txt-accent);
+    font-size: inherit;
+    font-weight: 400;
+
+    font-family: monospace;
+}

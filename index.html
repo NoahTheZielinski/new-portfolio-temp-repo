@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noah Zielinski</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="page-content">
+
+        <header>
+            <h1 class="fade-target">Welcome, </h1>
+            <h1 id="greeter" class="fade-target">Traveler</h1>
+        </header>
+
+        <main>
+            <p id="intro-landed" class="fade-target">You've successfully landed in my world.</p>
+            <p id="intro-choose" class="fade-target">Now choose where you'd like to go.</p>
+            <div id="signpost" class="fade-target">
+                <svg viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="90" y="20" width="10" height="60" rx="2" ry="2" fill="rgb(0,0,0,0)"
+                        stroke="var(--brdr-shadow)" stroke-width="2" />
+                </svg>
+            </div>
+            <p id="safe-travels" class="fade-target">I wish you safe travels,</p>
+            <p id="bon-voyage" class="fade-target">And Bon Voyage!</p>
+        </main>
+
+        <footer>
+            <p class="fade-target">&copy; NoahTheZielinski</p>
+        </footer>
+
+    </div>
+
+    <div id="card-stack"></div>
+
+    <script src="code.js"></script>
+</body>
+
+</html>
