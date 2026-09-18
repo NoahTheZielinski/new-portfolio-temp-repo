@@ -930,3 +930,6 @@
     window.openDevConsole = openDevConsole;
     window.closeDevConsole = closeDevConsole;
 })();
+
+addSign('Coming Soon');
+addSign('Coming Soon');
